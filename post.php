@@ -1,11 +1,8 @@
 <?php
  include('Config/db.php');
- include('token.php');
  $resp = $db->query('SELECT * FROM Animals');
- $token = generer_token('ajout');
- $errors= '';
+$errors= '';
 if (
-    verifier_token(600, 'post.php', 'ajout');
     $_POST &&
     isset($_POST['name']) && $_POST['name'] !== '' &&
     isset($_POST['summary']) && $_POST['summary'] !== '' &&
@@ -23,9 +20,9 @@ $image = $folder. $final_file . $file_type;
 if(move_uploaded_file($file_loc,$folder.$final_file)){
     $req= $db->prepare("INSERT INTO animals(name, summary, image) VALUES (:name, :summary, :image,)");
     $req->execute([
-    'name' => strip_tags($_POST['name']),
-    'summary' => strip_tags($_POST['summary']),
-    'image' => ($_POST[$image]),
+    'name' => $_POST['name'],
+    'summary' => $_POST['summary'],
+    'image' => $_POST[$image],
     ]);
     header('Location : index.php');
     exit;
