@@ -1,7 +1,10 @@
 <?php
 include('./Config/db.php');
+include('./template/nav.php');
+
 $resp = $db->query('SELECT * FROM Animals WHERE id = ' . $_GET['id']);
-$data = $resp->fetch();
+$respTest = $db->query('SELECT * FROM Animals INNER JOIN Stats WHERE Animals.id = Stats.animal_id AND id =' . $_GET['id']);
+$data = $respTest->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -18,13 +21,14 @@ $data = $resp->fetch();
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.php"><img src="./public/img/Ugly Animals.png"></a>
-    </nav>
     <img class="imgcouverturedetail" src="<?php echo $data['image'] ?>" alt="<?php echo $data['name'] ?>">
     <div id="contenantdescription">
         <h1><?php echo $data['name'] ?> </h1>
         <p><?php echo $data['summary'] ?></p>
+        <span><?php echo $data['type']?></span>
+        <span><?php echo $data['level']?></span>
+        <span><?php echo $data['HP']?></span>
+        <span><?php echo $data['PC']?></span>
         <a href="index.php">Retour à la liste</a>
     </div>
 </body>

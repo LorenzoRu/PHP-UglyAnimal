@@ -1,5 +1,6 @@
 <?php
  include('Config/db.php');
+ include('template/nav.php');
  $resp = $db->query('SELECT * FROM Animals');
 $errors= '';
 if (
@@ -56,9 +57,6 @@ $errors = '';
 </head>
 
 <body>
-<nav class="navbar fixed-top">
-    <a href="index.php"><img src="./public/img/Ugly Animals.png"></a>
-</nav>
     <?php 
         $user = 'root';
         $pass = 'root';

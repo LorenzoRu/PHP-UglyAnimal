@@ -1,5 +1,6 @@
 <?php
     include('./Config/db.php');
+    include('./template/nav.php');
     $resp = $db->query('SELECT * FROM Animals');
 ?>
 
@@ -15,9 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@500&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <nav class="navbar">
-    <a href="index.php"><img src="./public/img/Ugly Animals.png"></a>
-    </nav>
 
     <section>
         <h1>Liste des animaux</h1>
