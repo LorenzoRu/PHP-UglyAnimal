@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 10 mai 2022 à 11:40
+-- Généré le : sam. 21 mai 2022 à 10:00
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -45,13 +45,23 @@ INSERT INTO `Animals` (`id`, `name`, `summary`, `image`, `fav`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `liste`
+-- Structure de la table `Stats`
 --
 
-CREATE TABLE `liste` (
-  `id` int(11) NOT NULL,
-  `name` varchar(225) NOT NULL
+CREATE TABLE `Stats` (
+  `type` varchar(50) NOT NULL,
+  `level` int(11) NOT NULL,
+  `HP` int(11) NOT NULL,
+  `PC` int(11) NOT NULL,
+  `animal_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Stats`
+--
+
+INSERT INTO `Stats` (`type`, `level`, `HP`, `PC`, `animal_id`) VALUES
+('Roche', 2, 15, 3, 1);
 
 --
 -- Index pour les tables déchargées
@@ -64,10 +74,10 @@ ALTER TABLE `Animals`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `liste`
+-- Index pour la table `Stats`
 --
-ALTER TABLE `liste`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `Stats`
+  ADD PRIMARY KEY (`animal_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -80,10 +90,10 @@ ALTER TABLE `Animals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `liste`
+-- AUTO_INCREMENT pour la table `Stats`
 --
-ALTER TABLE `liste`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Stats`
+  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
