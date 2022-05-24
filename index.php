@@ -19,14 +19,14 @@
 
     <section>
         <h1>Liste des animaux</h1>
-        <div id="contenant">
+        <div id="contenant" class="d-flex flex-wrap justify-content-center">
             <?php while ($data = $resp->fetch()) :  ?>
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $data['image'] ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $data['name'] ?></h5>
                     <p class="card-text"><?php echo substr($data['summary'], 0, 275) ;?></p>
-                    <a href="details.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Voir plus</a>
+                    <a href="details.php?id=<?php echo $data['id'] ?>" class="btn btn-primary rounded-pill">Voir plus</a>
                 </div>
             </div>
             <?php endwhile;
