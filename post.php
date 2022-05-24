@@ -42,9 +42,6 @@ $errors = '';
     if (isset($_POST['summary']) && $_POST['summary'] === '') {
       $errors .= 'Veuillez rentrer une description. ';
     }
-    if (isset($_POST['image']) && $_POST['image'] === '') {
-        $errors .= 'Une image est requise. ';
-      }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
