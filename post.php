@@ -2,12 +2,14 @@
  include('Config/db.php');
  include('template/nav.php');
  $resp = $db->query('SELECT * FROM Animals');
+ 
 $errors= '';
 if (
     $_POST &&
     isset($_POST['name']) && $_POST['name'] !== '' &&
     isset($_POST['summary']) && $_POST['summary'] !== '' &&
     isset($_POST['file']) && $_POST['file'] !== '' 
+    
   ) {
 
 $file = rand(1000,100000)."-".$_FILES['file']['name'];
@@ -31,7 +33,7 @@ if(move_uploaded_file($file_loc,$folder.$final_file)){
 
 }
 
-
+var_dump($file);
 $errors = '';
     if (isset($_POST['name']) && $_POST['name'] === '') {
       $errors .= 'Veuillez rentrer un nom ';

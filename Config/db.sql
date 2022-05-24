@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : sam. 21 mai 2022 à 10:00
+-- Généré le : mar. 24 mai 2022 à 13:29
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -24,76 +24,85 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Animals`
+-- Structure de la table `animals`
 --
 
-CREATE TABLE `Animals` (
+CREATE TABLE `animals` (
   `id` int(11) NOT NULL,
   `name` varchar(225) NOT NULL,
   `summary` text NOT NULL,
   `image` varchar(225) NOT NULL,
-  `fav` tinyint(1) NOT NULL
+  `Type` varchar(225) NOT NULL,
+  `hp` int(11) NOT NULL,
+  `pc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `Animals`
+-- Déchargement des données de la table `animals`
 --
 
-INSERT INTO `Animals` (`id`, `name`, `summary`, `image`, `fav`) VALUES
-(1, 'Pangolin', 'Recouvert d\'une armure d\'écailles et doté d\'une langue de plus de 40 cm de longueur, le pangolin est l\'un des mammifères les plus insolites du règne animal. Il porte ses petits sur son dos et, lorsqu\'il est menacé, il se roule en boule pour se protéger des prédateurs.', './public/img/pangolin.jpg', 0);
+INSERT INTO `animals` (`id`, `name`, `summary`, `image`, `Type`, `hp`, `pc`) VALUES
+(1, 'Pangolin', 'Recouvert d\'une armure d\'écailles et doté d\'une langue de plus de 40 cm de longueur, le pangolin est l\'un des mammifères les plus insolites du règne animal. Il porte ses petits sur son dos et, lorsqu\'il est menacé, il se roule en boule pour se protéger des prédateurs.', './public/img/pangolin.jpg', 'Roche', 4, 1),
+(2, 'Blobfish', 'On trouve le blobfish à des profondeurs où la pression est près de cent fois supérieure à celle de la surface. Pour y résister, la chair du poisson est principalement constituée d’une masse gélatineuse3 dont la densité est plus faible que celle de l’eau, ce qui lui permet de flotter un peu au-dessus du plancher océanique sans avoir à dépenser sa précieuse énergie en nageant. Les cartilages de ce poisson sont également très légers.', '/public/img/blobfish.jpg', 'eau', 12, 0),
+(3, 'Tapir', 'le tapir n\'est franchement pas très séduisant et il n\'a pas grand chose pour lui. Avec sa coupe de redneck et la plus petite trompe du règne animal. Chassé pour son cuir il n\'est bon qu\'à servir de tapis.', '/public/img/tapir.jpg', 'Roche', 122, 33);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Stats`
+-- Structure de la table `types`
 --
 
-CREATE TABLE `Stats` (
-  `type` varchar(50) NOT NULL,
-  `level` int(11) NOT NULL,
-  `HP` int(11) NOT NULL,
-  `PC` int(11) NOT NULL,
-  `animal_id` int(11) NOT NULL
+CREATE TABLE `types` (
+  `animal_id` int(11) NOT NULL,
+  `type` varchar(225) NOT NULL,
+  `strenth` varchar(225) NOT NULL,
+  `weakness` varchar(225) NOT NULL,
+  `affinity` varchar(225) NOT NULL,
+  `enemy` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `Stats`
+-- Déchargement des données de la table `types`
 --
 
-INSERT INTO `Stats` (`type`, `level`, `HP`, `PC`, `animal_id`) VALUES
-('Roche', 2, 15, 3, 1);
+INSERT INTO `types` (`animal_id`, `type`, `strenth`, `weakness`, `affinity`, `enemy`) VALUES
+(1, '', 'Dragon', 'Glace', 'Dragon', 'Glace');
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `Animals`
+-- Index pour la table `animals`
 --
-ALTER TABLE `Animals`
+ALTER TABLE `animals`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Stats`
+-- Index pour la table `types`
 --
-ALTER TABLE `Stats`
-  ADD PRIMARY KEY (`animal_id`);
+ALTER TABLE `types`
+  ADD KEY `animal_id` (`animal_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `Animals`
+-- AUTO_INCREMENT pour la table `animals`
 --
-ALTER TABLE `Animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `animals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `Stats`
+-- Contraintes pour les tables déchargées
 --
-ALTER TABLE `Stats`
-  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Contraintes pour la table `types`
+--
+ALTER TABLE `types`
+  ADD CONSTRAINT `test` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
