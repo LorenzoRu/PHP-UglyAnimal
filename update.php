@@ -20,9 +20,14 @@ if (
     'Type' => $_POST['Type'],
     'pc' => $_POST['pc'],
     'hp' => $_POST['hp'],
+    'image' => "/public/img/pangolin.jpg",
+    'id' => $_GET['id']
     ]);
-    header('Location : index.php');
+    header('Location: show.php?id=' . $_GET['id']);
     exit;
+} else {
+  $response = $db->query('SELECT * FROM animals WHERE id=' . $_GET['id']);
+  $data = $response->fetch();
 }
 
 $errors = '';
@@ -61,11 +66,11 @@ $errors = '';
 <body>
 <h1>Ajouter un animal moche</h1>
 <form action="" method="POST">
-    Nom : <input type="text" name="name"/><br/>
-    Description : <input type="text" name="summary"/><br/>
-    Type : <input type="text" name="Type"/><br/>
-    Point de combat : <input type="text" name="pc"/><br/>
-    Point de vie : <input type="text" name="hp"/><br/>
+    Nom : <input type="text" name="name" value="<?php echo $data['name']; ?>"/><br/>
+    Description : <input type="text" name="summary" value="<?php echo $data['summary']; ?>"/><br/>
+    Type : <input type="text" name="Type" value="<?php echo $data['Type']; ?>"/><br/>
+    Point de combat : <input type="text" name="pc" value="<?php echo $data['pc']; ?>"/><br/>
+    Point de vie : <input type="text" name="hp" value="<?php echo $data['hp']; ?>"/><br/>
     <?php echo $errors ?>
     <input type="submit" value="Envoyer">
 </form>
