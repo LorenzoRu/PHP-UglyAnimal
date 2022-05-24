@@ -3,8 +3,7 @@ include('./Config/db.php');
 include('./template/nav.php');
 
 $resp = $db->query('SELECT * FROM Animals WHERE id = ' . $_GET['id']);
-$respTest = $db->query('SELECT * FROM Animals INNER JOIN Stats WHERE Animals.id = Stats.animal_id AND id =' . $_GET['id']);
-$data = $respTest->fetch();
+$data = $resp->fetch();
 ?>
 
 <!DOCTYPE html>
