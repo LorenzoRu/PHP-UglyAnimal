@@ -1,8 +1,13 @@
 <?php
 include('./Config/db.php');
+include('./template/nav.php');
+
 $resp = $db->query('SELECT * FROM Animals WHERE id = ' . $_GET['id']);
 $data = $resp->fetch();
-$query->bindValue(':id', $id, PDO::PARAM_INT);
+if ($data === false) {
+    header('Location: Template/error404.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,14 +24,14 @@ $query->bindValue(':id', $id, PDO::PARAM_INT);
 </head>
 
 <body>
-    <nav class="navbar fixed-top">
-        <a href="index.php"><img src="./public/img/Ugly Animals.png"></a>
-    </nav>
     <img class="imgcouverturedetail" src="<?php echo $data['image'] ?>" alt="<?php echo $data['name'] ?>">
     <div id="contenantdescription">
         <h1><?php echo $data['name'] ?> </h1>
         <p><?php echo $data['summary'] ?></p>
-        <a href="index.php" class="btn btn-primary" >Retour à la liste</a>
+        <p><?php echo $data['Type']?></p>
+        <p><?php echo $data['hp']?></p>
+        <p><?php echo $data['pc']?></p>
+        <a href="index.php">Retour à la liste</a>
     </div>
 </body>
 
