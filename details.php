@@ -3,8 +3,11 @@ include('./Config/db.php');
 include('./template/nav.php');
 
 $resp = $db->query('SELECT * FROM Animals WHERE id = ' . $_GET['id']);
-$respTest = $db->query('SELECT * FROM Animals INNER JOIN Stats WHERE Animals.id = Stats.animal_id AND id =' . $_GET['id']);
-$data = $respTest->fetch();
+$data = $resp->fetch();
+if ($data === false) {
+    header('Location: Template/error404.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +28,9 @@ $data = $respTest->fetch();
     <div id="contenantdescription">
         <h1><?php echo $data['name'] ?> </h1>
         <p><?php echo $data['summary'] ?></p>
-        <span><?php echo $data['type']?></span>
-        <span><?php echo $data['level']?></span>
-        <span><?php echo $data['HP']?></span>
-        <span><?php echo $data['PC']?></span>
+        <p><?php echo $data['Type']?></p>
+        <p><?php echo $data['hp']?></p>
+        <p><?php echo $data['pc']?></p>
         <a href="index.php">Retour à la liste</a>
     </div>
 </body>
