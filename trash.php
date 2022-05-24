@@ -8,7 +8,7 @@
     <title>Upload file</title>
 </head>
 <body>
-    <form action="trash.php" method="POST" enctype="multipart/form-data">
+    <form a method="POST" enctype="multipart/form-data">
         <input type="file" id="fileToUpload" name="fileToUpload"><br>
         <input type="submit" value="Upload" name="submit"><br>
     </form>
@@ -17,12 +17,12 @@
 
 <?php
 
-$fileToUpdate = 
+
 $target_dir = "public/img";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-echo $_GET["fileToUpload"];
+echo $_GET["fileToUploaad"];
 
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

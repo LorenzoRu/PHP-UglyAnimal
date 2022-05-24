@@ -64,7 +64,7 @@ $errors = '';
         $pass = 'root';
     ?>
 <h1>Ajouter un animal moche</h1>
-<form action="" method="POST">
+<form action="post.php" method="POST" enctype="multipart/form-data">
     Nom : <input type="text" name="name"/><br/>
     Description : <input type="text" name="summary"/><br/>
     Image : <input type="file" name="file"/><br/>
