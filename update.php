@@ -15,6 +15,7 @@
         $req = $db->prepare('UPDATE animals SET name=:name, summary=:summary, Type=:Type, hp=:hp, pc=:pc, WHERE id=:id');
         
         $req->execute([
+            'id' => '',
             'name' => $_POST['name'],
             'summary' => $_POST['summary'],
             'Type' => $_POST['Type'],
@@ -66,9 +67,9 @@
             HP : <input type="number" name="hp" value="<?php echo $data['hp']; ?>"> <br>
             PC : <input type="number" name="pc" value="<?php echo $data['pc']; ?>"> 
 
-            <span class="red white-text"><?php echo $errors; ?></span> <br>
+            <span><?php echo $errors; ?></span> <br>
 
-            <input type="submit" value="Modifier" class="teal btn">
+            <input type="submit" value="Modifier" class="btn btnprimary">
         </form>
     </div>
 

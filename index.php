@@ -19,15 +19,13 @@
 
     <section>
         <h1>Liste des animaux</h1>
-        <div id="contenant" class="d-flex flex-row flex-wrap justify-content-center">
-            <?php while ($data = $resp->fetch()) :  
-                $id= $data['id'];
-            ?>
+        <div id="contenant" class="d-flex flex-wrap justify-content-center">
+            <?php while ($data = $resp->fetch()) : $id = $data['id']; ?>
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $data['image'] ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $data['name'] ?></h5>
-                    <p class="card-text"><?php echo substr($data['summary'], 0, 300) ;?></p>
+                    <p class="card-text"><?php echo substr($data['summary'], 0, 275) ;?></p>
                     <div class=" flex-row align-items-center " style="display:flex;width:90%;margin-left:5%;justify-content:space-between; align-self:flex-end">
                         <a href="details.php?id=<?php echo $id ?>" class="btn btn-primary rounded-pill">Voir plus</a>
                         <a data-toggle="modal" data-target="#exampleModal" href="#exampleModal">
@@ -36,18 +34,22 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Éradiquer l'espèce</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>Êtes-vous sûrs de vouloir mettre fin à cette prodigieuse oeuvre de la nature qui a réussi à survivre toutes ces années malgré son apparente dysfonctionnalité ?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-primary" href="delete.php?id=<?php echo $id ?>">Eradiquer</a>
-                        </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer cet animal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr de vouloir éradiquer cette pauvre espèce ? Toute suppression est définitive et impacte gravement l'écosystème local.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <a href="delete.php?id=<?php echo $id ?>" class="btn ">Supprimer</a>
+                    </div>
                     </div>
                 </div>
             </div>
