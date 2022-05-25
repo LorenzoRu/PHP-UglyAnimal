@@ -5,13 +5,12 @@
  $token = generer_token('ajout');
  $errors= '';
 if (
-    verifier_token(600, 'post.php', 'ajout');
     $_POST &&
     isset($_POST['name']) && $_POST['name'] !== '' &&
     isset($_POST['summary']) && $_POST['summary'] !== '' &&
     isset($_POST['file']) && $_POST['file'] !== '' 
   ) {
-
+ verifier_token(600, 'post.php', 'ajout');
 $file = rand(1000,100000)."-".$_FILES['file']['name'];
 $file_loc = $_FILES['file']['tmp_name'];
 $file_size = $_FILES['file']['size'];
