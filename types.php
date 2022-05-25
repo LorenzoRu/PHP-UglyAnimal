@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@500&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <table class="table table-hover table-responsive{-md}" id="tableautypes" style="width:80vw; margin-left:10vw;margin-top:10vh;">
+    <table class="table table-hover table-responsive{-md}" id="tableautypes" style="width:80vw; margin-left:10vw;margin-top:10 vh;">
         <thead>
             <tr>
                 <th>Type</th>

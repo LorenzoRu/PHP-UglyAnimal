@@ -1,37 +1,30 @@
 <?php
  include('Config/db.php');
- include('token.php');
+ include('template/nav.php');
  $resp = $db->query('SELECT * FROM Animals');
- $token = generer_token('ajout');
- $errors= '';
+ 
+$errors= '';
 if (
     $_POST &&
     isset($_POST['name']) && $_POST['name'] !== '' &&
     isset($_POST['summary']) && $_POST['summary'] !== '' &&
-    isset($_POST['file']) && $_POST['file'] !== '' 
+    isset($_POST['Type']) && $_POST['Type'] !== '' &&
+    isset($_POST['hp']) && $_POST['hp'] !== '' &&
+    isset($_POST['pc']) && $_POST['pc'] !== '' 
+    
   ) {
- verifier_token(600, 'post.php', 'ajout');
-$file = rand(1000,100000)."-".$_FILES['file']['name'];
-$file_loc = $_FILES['file']['tmp_name'];
-$file_size = $_FILES['file']['size'];
-$file_type = $_FILES['file']['type'];
-$folder="public/img/";
-$new_file_name = strtolower($file);
-$final_file=str_replace(' ','-',$new_file_name);
-$image = $folder. $final_file . $file_type;
-if(move_uploaded_file($file_loc,$folder.$final_file)){
-    $req= $db->prepare("INSERT INTO animals(name, summary, image) VALUES (:name, :summary, :image,)");
+    $req= $db->prepare("INSERT INTO animals(name, summary, Type, pc, hp, image) VALUES (:name, :summary, :Type, :pc, :hp, :image)");
     $req->execute([
-    'name' => strip_tags($_POST['name']),
-    'summary' => strip_tags($_POST['summary']),
-    'image' => ($_POST[$image]),
+    'name' => $_POST['name'],
+    'summary' => $_POST['summary'],
+    'Type' => $_POST['Type'],
+    'pc' => $_POST['pc'],
+    'hp' => $_POST['hp'],
+    'image' => "public/img/pokeballmoche.jpg"
     ]);
     header('Location : index.php');
     exit;
 }
-
-}
-
 
 $errors = '';
     if (isset($_POST['name']) && $_POST['name'] === '') {
@@ -41,9 +34,18 @@ $errors = '';
     if (isset($_POST['summary']) && $_POST['summary'] === '') {
       $errors .= 'Veuillez rentrer une description. ';
     }
-    if (isset($_POST['image']) && $_POST['image'] === '') {
-        $errors .= 'Une image est requise. ';
-      }
+    
+    if(isset($_POST['Type']) && $_POST['Type'] === ''){
+      $errors .= 'Veuillez rentrer un type. ';
+    }
+
+    if(isset($_POST['hp']) && $_POST['hp'] === ''){
+      $errors .= 'Veuillez rentrer un hp. ';
+    }
+
+    if(isset($_POST['pc']) && $_POST['pc'] === ''){
+      $errors .= 'Veuillez rentrer un pc. ';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,18 +60,13 @@ $errors = '';
 </head>
 
 <body>
-<nav class="navbar fixed-top">
-    <a href="index.php"><img src="./public/img/Ugly Animals.png"></a>
-</nav>
-    <?php 
-        $user = 'root';
-        $pass = 'root';
-    ?>
 <h1>Ajouter un animal moche</h1>
-<form action="" method="POST">
+<form action="index.php" method="POST">
     Nom : <input type="text" name="name"/><br/>
     Description : <input type="text" name="summary"/><br/>
-    Image : <input type="file" name="file"/><br/>
+    Type : <input type="text" name="Type"/><br/>
+    Point de combat : <input type="text" name="pc"/><br/>
+    Point de vie : <input type="text" name="hp"/><br/>
     <?php echo $errors ?>
-    <input type="submit" value="Envoyer">
+    <input type="submit" class="btn btnprimary" value="Envoyer">
 </form>

@@ -28,9 +28,23 @@ if ($data === false) {
     <div id="contenantdescription">
         <h1><?php echo $data['name'] ?> </h1>
         <p><?php echo $data['summary'] ?></p>
-        <p><?php echo $data['Type']?></p>
-        <p><?php echo $data['hp']?></p>
-        <p><?php echo $data['pc']?></p>
+        <table class="table" style="width:60vw;">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Points de vie</th>
+                    <th>Points de compétence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo $data['Type']?></td>
+                    <td><?php echo $data['hp']?></td>
+                    <td><?php echo $data['pc']?></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="update.php?=<?php echo $data['id']?>">Mettre à jour</a>
         <a href="index.php">Retour à la liste</a>
     </div>
 </body>
