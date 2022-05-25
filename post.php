@@ -61,7 +61,7 @@ $errors = '';
 
 <body>
 <h1>Ajouter un animal moche</h1>
-<form action="index.php" method="POST">
+<form action="index.php" method="POST" enctype="multipart/form-data">
     Nom : <input type="text" name="name"/><br/>
     Description : <input type="text" name="summary"/><br/>
     Type : <input type="text" name="Type"/><br/>
